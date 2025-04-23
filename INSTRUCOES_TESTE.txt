@@ -1,0 +1,131 @@
+INSTRUÇÕES PARA EXECUTAR E MODIFICAR OS TESTES
+==========================================
+
+1. COMO RODAR OS TESTES
+-----------------------
+Opção 1 - Usando Ctrl+Shift+P:
+1. Pressione Ctrl+Shift+P
+2. Digite "Run Task" e selecione
+3. Escolha "Executar Testes"
+
+Opção 2 - No terminal:
+1. gcc -o test/runtests test/runtests.c src/funcoes.c -I.
+2. ./test/runtests
+
+O resultado mostrará se os testes passaram ou falharam.
+
+2. ONDE MODIFICAR OS VALORES DOS TESTES
+-------------------------------------
+Arquivo: test/test.h
+
+a) Para modificar testes de quantidade de ingressos:
+   - Função: test_quantidade_ingressos (aproximadamente linha 8)
+   - Valores que pode testar:
+     * Negativos (deve retornar -1)
+       Exemplo original:
+           if (validaQuantidade(-1) != -1) return "Falha: quantidade negativa deveria ser inválida";
+       Para modificar:
+           if (validaQuantidade(-5) != -1) return "Falha: quantidade negativa deveria ser inválida";
+
+     * Zero (deve retornar -1)
+       Exemplo original:
+           if (validaQuantidade(0) != -1) return "Falha: quantidade zero deveria ser inválida";
+       Para modificar:
+           if (validaQuantidade(0) != -1) return "Falha: quantidade zero não pode ser aceita";
+
+     * Entre 1 e 5 (deve retornar o mesmo número)
+       Exemplo original:
+           if (validaQuantidade(3) != 3) return "Falha: quantidade 3 deveria ser válida";
+       Para modificar:
+           if (validaQuantidade(4) != 4) return "Falha: quantidade 4 deveria ser válida";
+
+     * Maior que 5 (deve retornar -1)
+       Exemplo original:
+           if (validaQuantidade(6) != -1) return "Falha: quantidade 6 deveria ser inválida";
+       Para modificar:
+           if (validaQuantidade(10) != -1) return "Falha: quantidade 10 deveria ser inválida";
+
+b) Para modificar testes de valor do ingresso:
+   - Função: test_valor_ingresso (aproximadamente linha 25)
+   - Valores que pode testar:
+     * Idades negativas (deve retornar -1)
+       Exemplo original:
+           if (calculaValorIngresso(-5) != -1) return "Falha: idade negativa deveria ser inválida";
+       Para modificar:
+           if (calculaValorIngresso(-10) != -1) return "Falha: idade negativa deveria ser inválida";
+
+     * Idade zero (deve retornar -1)
+       Exemplo original:
+           if (calculaValorIngresso(0) != -1) return "Falha: idade zero deveria ser inválida";
+       Para modificar:
+           if (calculaValorIngresso(0) != -1) return "Falha: idade zero não pode ser aceita";
+
+     * Crianças (1-12 anos: deve retornar 10)
+       Exemplo original:
+           if (calculaValorIngresso(10) != 10) return "Falha: criança de 10 anos deveria pagar R$10";
+       Para modificar:
+           if (calculaValorIngresso(8) != 10) return "Falha: criança de 8 anos deveria pagar R$10";
+
+     * Adultos (13-59 anos: deve retornar 30)
+       Exemplo original:
+           if (calculaValorIngresso(30) != 30) return "Falha: pessoa de 30 anos deveria pagar R$30";
+       Para modificar:
+           if (calculaValorIngresso(45) != 30) return "Falha: pessoa de 45 anos deveria pagar R$30";
+
+     * Idosos (60+ anos: deve retornar 15)
+       Exemplo original:
+           if (calculaValorIngresso(65) != 15) return "Falha: pessoa de 65 anos deveria pagar R$15";
+       Para modificar:
+           if (calculaValorIngresso(70) != 15) return "Falha: pessoa de 70 anos deveria pagar R$15";
+
+c) Para modificar testes de valor total:
+   - Função: test_valor_total (aproximadamente linha 45)
+   - Valores que pode testar:
+     * Combinação de diferentes idades
+       Exemplo original:
+           int total = calculaValorIngresso(10) + calculaValorIngresso(25) + calculaValorIngresso(65);
+           if (total != 55) return "Falha: valor total para criança + adulto + idoso deveria ser R$55";
+       Para modificar:
+           int total = calculaValorIngresso(8) + calculaValorIngresso(35) + calculaValorIngresso(75);
+           if (total != 55) return "Falha: valor total para criança + adulto + idoso deveria ser R$55";
+
+     * Valor máximo (5 adultos = 150)
+       Exemplo original:
+           total = calculaValorIngresso(30) * 5;
+           if (total != 150) return "Falha: valor máximo para 5 adultos deveria ser R$150";
+       Para modificar:
+           total = calculaValorIngresso(40) * 5;
+           if (total != 150) return "Falha: valor máximo para 5 adultos deveria ser R$150";
+
+     * Valor mínimo (1 criança = 10)
+       Exemplo original:
+           total = calculaValorIngresso(10);
+           if (total != 10) return "Falha: valor mínimo para 1 criança deveria ser R$10";
+       Para modificar:
+           total = calculaValorIngresso(5);
+           if (total != 10) return "Falha: valor mínimo para 1 criança deveria ser R$10";
+
+4. VALORES VÁLIDOS
+----------------
+- Quantidade de ingressos: 1 a 5
+- Idades: maiores que 0
+- Preços:
+  * Crianças (até 12 anos): R$ 10
+  * Adultos (13-59 anos): R$ 30
+  * Idosos (60+ anos): R$ 15
+
+5. INTERPRETANDO OS RESULTADOS
+---------------------------
+- "TODOS OS TESTES PASSARAM": programa está funcionando corretamente
+- "FALHA: [mensagem]": indica qual teste falhou e por quê
+- "Testes executados: X": mostra quantos testes foram executados
+
+DICAS IMPORTANTES:
+----------------
+1. Sempre mantenha o padrão "if (função(valor) != resultado_esperado)"
+2. Modifique apenas os números dentro dos parênteses e o texto da mensagem de erro
+3. Não altere a estrutura do if ou a sintaxe do return
+4. Mantenha as mensagens de erro descritivas e em português
+5. Após cada modificação, salve o arquivo e execute os testes novamente
+
+Observação: Após modificar os testes, sempre recompile e execute novamente para ver os resultados. 

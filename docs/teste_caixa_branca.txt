@@ -1,0 +1,78 @@
+TESTE DE CAIXA BRANCA - ANÁLISE DE CAMINHOS
+==========================================
+
+1. FUNÇÃO calculaValorIngresso()
+-------------------------------
+
+Grafo de Fluxo:
+
+[1]início
+   ↓
+[2]if (idade <= 0) → [3]return -1
+   ↓
+[4]if (idade <= 12) → [5]return 10
+   ↓
+[6]if (idade >= 13 && idade <= 59) → [7]return 30
+   ↓
+[8]return 15
+
+Caminhos Possíveis:
+1. 1 → 2 → 3                  (idade <= 0)
+2. 1 → 2 → 4 → 5              (0 < idade <= 12)
+3. 1 → 2 → 4 → 6 → 7          (13 <= idade <= 59)
+4. 1 → 2 → 4 → 6 → 8          (idade >= 60)
+
+Nossos testes cobrem todos estes caminhos:
+- Caminho 1: test_valor_ingresso() testa idade negativa e zero
+- Caminho 2: test_valor_ingresso() testa idade = 10 (criança)
+- Caminho 3: test_valor_ingresso() testa idade = 30 (adulto)
+- Caminho 4: test_valor_ingresso() testa idade = 65 (idoso)
+
+2. FUNÇÃO validaQuantidade()
+---------------------------
+
+Grafo de Fluxo:
+
+[1]início
+   ↓
+[2]if (qtd <= 0 || qtd > 5) → [3]return -1
+   ↓
+[4]return qtd
+
+Caminhos Possíveis:
+1. 1 → 2 → 3                  (qtd <= 0 ou qtd > 5)
+2. 1 → 2 → 4                  (1 <= qtd <= 5)
+
+Nossos testes cobrem todos estes caminhos:
+- Caminho 1: test_quantidade_ingressos() testa valores negativos, zero e maior que 5
+- Caminho 2: test_quantidade_ingressos() testa valores entre 1 e 5
+
+COBERTURA DE TESTES
+------------------
+Nossos testes atingem 100% de cobertura de caminhos pois:
+1. Testam todas as condições possíveis (verdadeiro/falso)
+2. Passam por todos os caminhos de execução
+3. Verificam todos os valores limite de cada condição
+
+VALORES LIMITE TESTADOS
+----------------------
+1. calculaValorIngresso():
+   - Antes da primeira faixa: -1, 0
+   - Limites da primeira faixa: 1, 12
+   - Limites da segunda faixa: 13, 59
+   - Limites da terceira faixa: 60, 100
+
+2. validaQuantidade():
+   - Antes do intervalo válido: -1, 0
+   - Dentro do intervalo: 1, 3, 5
+   - Depois do intervalo: 6, 10
+
+CONCLUSÃO
+---------
+A análise do grafo nos ajuda a:
+1. Identificar todos os caminhos possíveis
+2. Garantir que todos os caminhos são testados
+3. Encontrar valores limite importantes
+4. Verificar a cobertura completa do código
+
+Nossos testes atuais garantem uma cobertura completa de todos os caminhos possíveis do código. 
