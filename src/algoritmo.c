@@ -28,6 +28,7 @@ int calculaValorIngresso(int idade) {
     }
 }
 
+#ifndef TESTING
 int main() {
     #ifdef _WIN32
     // Configura o terminal do Windows para UTF-8
@@ -65,3 +66,4 @@ int main() {
 
     return 0;
 }
+#endif

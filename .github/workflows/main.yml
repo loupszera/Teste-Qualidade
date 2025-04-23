@@ -9,24 +9,20 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-    # Fazer o checkout do código
-    - name: Checkout code
+    - name: Checkout do código
       uses: actions/checkout@v2
 
-    # Preparar o ambiente para rodar aplicações em C
-    - name: Install build essentials
-      run: sudo apt-get install build-essential
+    - name: Instalar dependências
+      run: sudo apt-get update && sudo apt-get install -y build-essential
 
-    # Compilar o projeto
-    - name: Build the project
+    - name: Compilar o projeto
       run: |
-        gcc -o unitario test/test.c test/runtests.c src/algoritmo.c src/funcoes.c -I test/ -I test/miniunit-master/ -I src/
+        gcc -o test/runtests test/runtests.c src/algoritmo.c -I src/ -I test/ -I test/miniunit-master -D TESTING
 
-    # Executar o teste
-    - name: Run unit tests
+    - name: Executar testes
       run: |
-        ./unitario 
+        cd test && ./runtests 
