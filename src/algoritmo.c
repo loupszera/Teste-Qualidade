@@ -42,7 +42,7 @@ int main() {
 
     // Verifica se a quantidade é válida
     if (validaQuantidade(qtdBilhete) == -1) {
-        printf("Quantidade invalida. O numero de bilhetes deve ser entre 1 e 5.\n");
+        printf("Quantidade inválida. O número de bilhetes deve ser entre 1 e 5.\n");
         return 1;
     }
 
