@@ -120,12 +120,3 @@ c) Para modificar testes de valor total:
 - "FALHA: [mensagem]": indica qual teste falhou e por quê
 - "Testes executados: X": mostra quantos testes foram executados
 
-DICAS IMPORTANTES:
-----------------
-1. Sempre mantenha o padrão "if (função(valor) != resultado_esperado)"
-2. Modifique apenas os números dentro dos parênteses e o texto da mensagem de erro
-3. Não altere a estrutura do if ou a sintaxe do return
-4. Mantenha as mensagens de erro descritivas e em português
-5. Após cada modificação, salve o arquivo e execute os testes novamente
-
-Observação: Após modificar os testes, sempre recompile e execute novamente para ver os resultados. 
