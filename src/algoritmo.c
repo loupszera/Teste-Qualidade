@@ -37,7 +37,7 @@ int main() {
     
     int qtdBilhete, total = 0, valorIngresso;
    
-    printf("Digite o numero de bilhetes a serem comprados (maximo 5): ");
+    printf("Digite o número de bilhetes a serem comprados (máximo 5): ");
     scanf("%d", &qtdBilhete);
 
     // Verifica se a quantidade é válida
